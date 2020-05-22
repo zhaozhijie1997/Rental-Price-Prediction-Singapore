@@ -1,6 +1,6 @@
 import streamlit as st
 import pickle
-import json
+import json,os
 import numpy as np
 import pandas as pd
 import joblib
@@ -18,23 +18,23 @@ IMAGE2 = 'Housing_Model/district.jpg'
 IMAGE3 = 'Housing_Model/news-2.jpg'
 
 def load_scaler():
-    with open(SCALER,'rb') as f:
+    with open(os.path.join(SCALER),'rb') as f:
         model = pickle.load(f)
     return model
 
 def load_models(PATH):
-    with open(PATH,'rb') as f:
+    with open(os.path.join(PATH),'rb') as f:
         model = pickle.load(f)
 
     return model
 
 def load_columns():
-    with open(COLUMNS) as json_file:
+    with open(os.path.join(COLUMNS)) as json_file:
         columns = json.load(json_file)
     return columns
 
 def joblib_load(model_file):
-    open_file = open(model_file,'rb')
+    open_file = open(os.path.join(model_file),'rb')
     loaded_models = joblib.load(open_file)
     return loaded_models
 
